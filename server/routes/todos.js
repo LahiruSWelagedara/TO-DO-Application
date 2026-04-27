@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Todo = require('../models/Todo');
 
-// GET /api/todos - Fetch all
+
 router.get('/', async (req, res) => {
   try {
     const todos = await Todo.find().sort({ createdAt: -1 });
@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// POST /api/todos - Create new
+
 router.post('/', async (req, res) => {
   const { title, description } = req.body;
   if (!title) {
@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// PUT /api/todos/:id - Update title/description
+
 router.put('/:id', async (req, res) => {
   try {
     const { title, description } = req.body;
@@ -49,7 +49,6 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// PATCH /api/todos/:id/done - Toggle completion
 router.patch('/:id/done', async (req, res) => {
   try {
     const todo = await Todo.findById(req.params.id);
@@ -63,7 +62,7 @@ router.patch('/:id/done', async (req, res) => {
   }
 });
 
-// DELETE /api/todos/:id - Remove item
+
 router.delete('/:id', async (req, res) => {
   try {
     const todo = await Todo.findByIdAndDelete(req.params.id);
