@@ -35,7 +35,6 @@ function App() {
     const optimisticTodo = { ...newTodoData, _id: tempId, done: false, createdAt: new Date().toISOString() };
     setTodos([optimisticTodo, ...todos]);
     
-    // Automatically switch to 'todo' view if they add a task from 'completed' view
     if (currentView !== 'todo') {
       setCurrentView('todo');
     }
@@ -116,7 +115,6 @@ function App() {
       <Sidebar currentView={currentView} setCurrentView={setCurrentView} />
       
       <main className="flex-1 flex flex-col h-full overflow-hidden relative">
-        {/* Decorative background blur for light theme */}
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-300/30 rounded-full blur-[120px] pointer-events-none"></div>
         <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-300/30 rounded-full blur-[120px] pointer-events-none"></div>
 
@@ -143,7 +141,6 @@ function App() {
           )}
 
           <div className="max-w-3xl">
-            {/* Only show form if in Todo view, or show it always but it adds to Todo? Always showing is fine. */}
             {currentView === 'todo' && <TodoForm onAdd={handleAdd} />}
 
             {loading ? (
